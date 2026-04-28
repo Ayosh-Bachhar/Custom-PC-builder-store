@@ -18,6 +18,9 @@ if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Staff") {
 
     <p>Welcome, <?php echo $_SESSION["Name"]; ?></p>
 
+    <a href="profile.php">Manage Profile</a>
+    <br><br>
+
     <a href="../logout.php">Logout</a>
 
 </body>

@@ -18,7 +18,10 @@ if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
 
     <p>Welcome, <?php echo $_SESSION["Name"]; ?></p>
 
-    <a href="customer_profile.php">Manage Profile</a>
+    <a href="profile.php">Manage Profile</a>
+    <br><br>
+
+    <a href="order_history.php">Order History</a>
     <br><br>
 
     <a href="../logout.php">Logout</a>
