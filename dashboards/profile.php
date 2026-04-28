@@ -2,7 +2,7 @@
 session_start();
 include "../config/db.php";
 
-if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
+if (!isset($_SESSION["User_ID"])) {
     header("Location: ../index.php?role=login");
     exit();
 }
@@ -75,16 +75,30 @@ if (isset($_POST["update_password"])) {
         $message = "Old password is incorrect.";
     }
 }
+
+/* Back dashboard link based on role */
+$dashboardLink = "customer_dashboard.php";
+
+if ($_SESSION["Role"] == "Staff") {
+    $dashboardLink = "staff_dashboard.php";
+} elseif ($_SESSION["Role"] == "Owner") {
+    $dashboardLink = "owner_dashboard.php";
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Profile</title>
+    <title>Profile Management</title>
 </head>
 <body>
 
-    <h1>Customer Profile Management</h1>
+    <h1>Profile Management</h1>
+
+    <p>
+        Logged in as: 
+        <strong><?php echo $_SESSION["Role"]; ?></strong>
+    </p>
 
     <p style="color: green;">
         <?php echo $message; ?>
@@ -130,7 +144,7 @@ if (isset($_POST["update_password"])) {
 
     <br>
 
-    <a href="customer_dashboard.php">Back to Dashboard</a>
+    <a href="<?php echo $dashboardLink; ?>">Back to Dashboard</a>
 
 </body>
 </html>

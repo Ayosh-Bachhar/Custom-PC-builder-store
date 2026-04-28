@@ -14,9 +14,12 @@ if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Owner") {
 </head>
 <body>
 
-    <h1>Owner/Admin Dashboard</h1>
+    <h1>Owner Dashboard</h1>
 
     <p>Welcome, <?php echo $_SESSION["Name"]; ?></p>
+
+    <a href="profile.php">Manage Profile</a>
+    <br><br>
 
     <a href="../logout.php">Logout</a>
 
