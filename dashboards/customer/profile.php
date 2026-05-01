@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "../config/db.php";
+include "../../config/db.php";
 
 if (!isset($_SESSION["User_ID"])) {
-    header("Location: ../index.php?role=login");
+    header("Location: ../../index.php?role=login");
     exit();
 }
 
@@ -80,9 +80,9 @@ if (isset($_POST["update_password"])) {
 $dashboardLink = "customer_dashboard.php";
 
 if ($_SESSION["Role"] == "Staff") {
-    $dashboardLink = "staff_dashboard.php";
+    $dashboardLink = "../staff/staff_dashboard.php";
 } elseif ($_SESSION["Role"] == "Owner") {
-    $dashboardLink = "owner_dashboard.php";
+    $dashboardLink = "../admin/owner_dashboard.php";
 }
 ?>
 
@@ -90,6 +90,7 @@ if ($_SESSION["Role"] == "Staff") {
 <html>
 <head>
     <title>Profile Management</title>
+    <link rel="stylesheet" href="../../webstyle/style.css">
 </head>
 <body>
 

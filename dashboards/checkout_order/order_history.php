@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "../config/db.php";
+include "../../config/db.php";
 
 if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
-    header("Location: ../index.php?role=login");
+    header("Location: ../../index.php?role=login");
     exit();
 }
 
@@ -29,6 +29,7 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
     <title>Order History</title>
+    <link rel="stylesheet" href="../../webstyle/style.css">
 </head>
 <body>
 
@@ -81,7 +82,7 @@ $result = mysqli_query($conn, $sql);
 
     <br>
 
-    <a href="customer_dashboard.php">Back to Dashboard</a>
+    <a href="../customer/customer_dashboard.php">Back to Dashboard</a>
 
 </body>
 </html>

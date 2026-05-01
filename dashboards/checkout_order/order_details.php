@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "../config/db.php";
+include "../../config/db.php";
 
 if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
-    header("Location: ../index.php?role=login");
+    header("Location: ../../index.php?role=login");
     exit();
 }
 
@@ -65,6 +65,7 @@ $itemResult = mysqli_query($conn, $itemSql);
 <html>
 <head>
     <title>Order Details</title>
+    <link rel="stylesheet" href="../../webstyle/style.css">
 </head>
 <body>
 

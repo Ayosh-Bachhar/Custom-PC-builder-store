@@ -176,7 +176,7 @@ if (isset($_POST["login"])) {
                         $_SESSION["Name"] = $user["Name"];
                         $_SESSION["Role"] = $user["Role"];
 
-                        header("Location: dashboards/staff_dashboard.php");
+                        header("Location: dashboards/staff/staff_dashboard.php");
                         exit();
                     }
                 } else {
@@ -185,10 +185,10 @@ if (isset($_POST["login"])) {
                     $_SESSION["Role"] = $user["Role"];
 
                     if ($user["Role"] == "Customer") {
-                        header("Location: dashboards/customer_dashboard.php");
+                        header("Location: dashboards/customer/customer_dashboard.php");
                         exit();
                     } elseif ($user["Role"] == "Owner") {
-                        header("Location: dashboards/owner_dashboard.php");
+                        header("Location: dashboards/admin/owner_dashboard.php");
                         exit();
                     }
                 }
@@ -206,6 +206,7 @@ if (isset($_POST["login"])) {
 <html>
 <head>
     <title>Custom PC Builder Store</title>
+    <link rel="stylesheet" href="webstyle/style.css">
 </head>
 <body>
 

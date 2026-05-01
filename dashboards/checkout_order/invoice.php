@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "../config/db.php";
+include "../../config/db.php";
 
 if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
-    header("Location: ../index.php?role=login");
+    header("Location: ../../index.php?role=login");
     exit();
 }
 
@@ -67,6 +67,7 @@ $itemResult = mysqli_query($conn, $itemSql);
 <html>
 <head>
     <title>Invoice</title>
+    <link rel="stylesheet" href="../../webstyle/style.css">
 </head>
 <body>
 
@@ -143,7 +144,7 @@ $itemResult = mysqli_query($conn, $itemSql);
 
 <br><br>
 
-<a href="order_details.php?order_id=<?php echo $order["Order_ID"]; ?>">Back to Order Details</a>
+<a href="order_details.php?order_id=<?php echo $orderId; ?>">Back to Order Details</a>
 
 </body>
 </html>
