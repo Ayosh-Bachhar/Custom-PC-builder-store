@@ -13,48 +13,99 @@ $brand = "";
 $minPrice = "";
 $maxPrice = "";
 
-$whereParts = array();
-
-if (isset($_GET["search"]) && $_GET["search"] != "") {
+if (isset($_GET["search"])) {
     $search = mysqli_real_escape_string($conn, $_GET["search"]);
-
-    $whereParts[] = "(Name LIKE '%$search%' 
-                     OR Brand LIKE '%$search%' 
-                     OR Model LIKE '%$search%')";
 }
 
-if (isset($_GET["category"]) && $_GET["category"] != "") {
+if (isset($_GET["category"])) {
     $category = mysqli_real_escape_string($conn, $_GET["category"]);
-    $whereParts[] = "Category_Name = '$category'";
 }
 
-if (isset($_GET["brand"]) && $_GET["brand"] != "") {
+if (isset($_GET["brand"])) {
     $brand = mysqli_real_escape_string($conn, $_GET["brand"]);
-    $whereParts[] = "Brand = '$brand'";
 }
 
-if (isset($_GET["min_price"]) && $_GET["min_price"] != "") {
-    $minPrice = mysqli_real_escape_string($conn, $_GET["min_price"]);
-    $whereParts[] = "Price >= '$minPrice'";
+if (isset($_GET["min_price"])) {
+    $minPrice = $_GET["min_price"];
 }
 
-if (isset($_GET["max_price"]) && $_GET["max_price"] != "") {
-    $maxPrice = mysqli_real_escape_string($conn, $_GET["max_price"]);
-    $whereParts[] = "Price <= '$maxPrice'";
+if (isset($_GET["max_price"])) {
+    $maxPrice = $_GET["max_price"];
 }
 
-$sql = "SELECT * FROM product";
+/* Choose universal category image */
+$categoryImage = "default.png";
 
-if (count($whereParts) > 0) {
-    $sql = $sql . " WHERE " . implode(" AND ", $whereParts);
+if ($category == "CPU") {
+    $categoryImage = "cpu.png";
+} elseif ($category == "CPU Cooler") {
+    $categoryImage = "cpu_cooler.png";
+} elseif ($category == "Motherboard") {
+    $categoryImage = "motherboard.png";
+} elseif ($category == "RAM") {
+    $categoryImage = "ram.png";
+} elseif ($category == "Storage") {
+    $categoryImage = "storage.png";
+} elseif ($category == "Graphics Card") {
+    $categoryImage = "graphics_card.png";
+} elseif ($category == "Power Supply") {
+    $categoryImage = "power_supply.png";
+} elseif ($category == "Casing") {
+    $categoryImage = "casing.png";
+} elseif ($category == "Monitor") {
+    $categoryImage = "monitor.png";
+} elseif ($category == "Casing Fan") {
+    $categoryImage = "casing_fan.png";
+} elseif ($category == "Keyboard") {
+    $categoryImage = "keyboard.png";
+} elseif ($category == "Mouse") {
+    $categoryImage = "mouse.png";
+} elseif ($category == "Speaker & Home Theater") {
+    $categoryImage = "speaker.png";
+} elseif ($category == "Headphone") {
+    $categoryImage = "headphone.png";
+} elseif ($category == "WiFi Adapter/LAN Card") {
+    $categoryImage = "wifi.png";
+} elseif ($category == "Anti Virus") {
+    $categoryImage = "anti_virus.png";
+} elseif ($category == "UPS") {
+    $categoryImage = "ups.png";
 }
 
-$sql = $sql . " ORDER BY Name ASC";
+/* Product query */
+$productSql = "SELECT * FROM product WHERE 1";
 
-$productResult = mysqli_query($conn, $sql);
+if ($search != "") {
+    $productSql = $productSql . " AND (Name LIKE '%$search%' OR Brand LIKE '%$search%' OR Model LIKE '%$search%')";
+}
 
-/* Get brands for filter */
-$brandSql = "SELECT DISTINCT Brand FROM product ORDER BY Brand ASC";
+if ($category != "") {
+    $productSql = $productSql . " AND Category_Name = '$category'";
+}
+
+if ($brand != "") {
+    $productSql = $productSql . " AND Brand = '$brand'";
+}
+
+if ($minPrice != "") {
+    $productSql = $productSql . " AND Price >= '$minPrice'";
+}
+
+if ($maxPrice != "") {
+    $productSql = $productSql . " AND Price <= '$maxPrice'";
+}
+
+$productSql = $productSql . " ORDER BY Name ASC";
+$productResult = mysqli_query($conn, $productSql);
+
+/* Brand filter query */
+$brandSql = "SELECT DISTINCT Brand FROM product WHERE 1";
+
+if ($category != "") {
+    $brandSql = $brandSql . " AND Category_Name = '$category'";
+}
+
+$brandSql = $brandSql . " ORDER BY Brand ASC";
 $brandResult = mysqli_query($conn, $brandSql);
 ?>
 
@@ -68,17 +119,35 @@ $brandResult = mysqli_query($conn, $brandSql);
 
     <h1>Products</h1>
 
-    <form method="GET" action="products.php">
-        <label>Search:</label><br>
-        <input type="text" name="search" value="<?php echo $search; ?>" placeholder="Name, brand, model">
+    <?php
+    if ($category != "") {
+    ?>
+        <h2><?php echo $category; ?></h2>
+
+        <img src="../../category_images/<?php echo $categoryImage; ?>" width="140" height="140" alt="Category Image">
+
         <br><br>
+    <?php
+    }
+    ?>
+
+    <form method="GET" action="">
+        <label>Search:</label><br>
+        <input type="text" name="search" placeholder="Name, brand, model" value="<?php echo $search; ?>">
 
         <?php
         if ($category != "") {
         ?>
             <input type="hidden" name="category" value="<?php echo $category; ?>">
-            <p><strong>Category:</strong> <?php echo $category; ?></p>
         <?php
+        }
+        ?>
+
+        <br><br>
+
+        <?php
+        if ($category != "") {
+            echo "<p><strong>Category:</strong> " . $category . "</p>";
         }
         ?>
 
@@ -120,26 +189,23 @@ $brandResult = mysqli_query($conn, $brandSql);
 
     <hr>
 
-    <?php
-    if (mysqli_num_rows($productResult) > 0) {
-    ?>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Warranty</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
 
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>Product ID</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Warranty</th>
-                <th>Category</th>
-                <th>Action</th>
-            </tr>
-
-            <?php
+        <?php
+        if (mysqli_num_rows($productResult) > 0) {
             while ($product = mysqli_fetch_assoc($productResult)) {
-            ?>
+        ?>
                 <tr>
                     <td><?php echo $product["Product_ID"]; ?></td>
                     <td><?php echo $product["Name"]; ?></td>
@@ -150,23 +216,22 @@ $brandResult = mysqli_query($conn, $brandSql);
                     <td><?php echo $product["Warranty"]; ?></td>
                     <td><?php echo $product["Category_Name"]; ?></td>
                     <td>
-                    <a href="product_details.php?product_id=<?php echo $product["Product_ID"]; ?>">
-                        View Details
-
-                    </a>
+                        <a href="product_details.php?product_id=<?php echo $product["Product_ID"]; ?>">
+                            View Details
+                        </a>
                     </td>
                 </tr>
-            <?php
+        <?php
             }
-            ?>
-
-        </table>
-
-    <?php
-    } else {
-        echo "<p>No products found.</p>";
-    }
-    ?>
+        } else {
+        ?>
+            <tr>
+                <td colspan="9">No products found.</td>
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
 
     <br>
 
