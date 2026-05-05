@@ -1,51 +1,1015 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background-color: #f4f4f4;
-    color: #222;
+/* =========================================================
+   Custom PC Builder Store - Clean Blue Tech UI
+   Only CSS changed. No PHP code change needed.
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
 }
 
-h1, h2, h3 {
-    color: #222;
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --primary-soft: #eff6ff;
+    --dark: #111827;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #dbe3ef;
+    --bg: #f3f7fb;
+    --white: #ffffff;
+    --danger: #dc2626;
+    --success: #15803d;
 }
+
+body {
+    margin: 0;
+    padding: 28px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+}
+
+/* Top blue line */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7px;
+    background: linear-gradient(90deg, #1e3a8a, #2563eb, #0ea5e9);
+    z-index: 9999;
+}
+
+/* =========================================================
+   INDEX / ROLE SELECTION PAGE
+   ========================================================= */
+
+body:has(a[href="index.php?role=customer"]) {
+    min-height: 100vh;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body:has(a[href="index.php?role=customer"]) > h1,
+body:has(a[href="index.php?role=customer"]) > h2,
+body:has(a[href="index.php?role=customer"]) > h3,
+body:has(a[href="index.php?role=customer"]) > p,
+body:has(a[href="index.php?role=customer"]) > form,
+body:has(a[href="index.php?role=customer"]) > hr {
+    width: 100%;
+    max-width: 620px;
+}
+
+body:has(a[href="index.php?role=customer"]) > h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 22px;
+}
+
+body:has(a[href="index.php?role=customer"]) > h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+body:has(a[href="index.php?role=customer"]) > p:first-of-type {
+    text-align: center;
+}
+
+body:has(a[href="index.php?role=customer"]) > p:nth-of-type(2) {
+    text-align: center;
+    font-weight: 700;
+}
+
+body:has(a[href="index.php?role=customer"]) > hr {
+    margin: 22px auto 28px auto;
+}
+
+body:has(a[href="index.php?role=customer"]) > form {
+    background: var(--white);
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body:has(a[href="index.php?role=customer"]) > form > div {
+    width: 280px;
+    max-width: 100%;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+body:has(a[href="index.php?role=customer"]) > form label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+body:has(a[href="index.php?role=customer"]) > form input {
+    width: 280px;
+    max-width: 100%;
+}
+
+body:has(a[href="index.php?role=customer"]) > form > div:last-child {
+    text-align: center !important;
+}
+
+body:has(a[href="index.php?role=customer"]) > form button {
+    min-width: 130px;
+}
+
+body:has(a[href="index.php?role=customer"]) > h3 {
+    text-align: center;
+}
+
+/* =========================================================
+   CUSTOMER DASHBOARD - CENTERED HORIZONTAL BUTTONS
+   ========================================================= */
+
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) {
+    min-height: 100vh;
+    padding: 150px 28px 28px 28px;
+    text-align: center;
+}
+
+/* Hide dashboard <br> so links can stay side by side */
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > br {
+    display: none;
+}
+
+/* Customer dashboard title */
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > h1 {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin: 0 auto 14px auto;
+}
+
+/* Welcome text */
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > p {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    color: var(--muted);
+    margin: 0 auto 34px auto;
+}
+
+/* Main dashboard buttons */
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 155px;
+    min-height: 46px;
+    padding: 12px 18px;
+    margin: 8px;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > a:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+}
+
+/* Logout below everything */
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > a[href="../../logout.php"] {
+    display: flex;
+    width: 155px;
+    margin: 38px auto 0 auto;
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > a[href="../../logout.php"]:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   STAFF DASHBOARD - CENTERED HORIZONTAL BUTTONS
+   ========================================================= */
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) {
+    min-height: 100vh;
+    padding: 80px 28px 28px 28px;
+    text-align: center;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > br {
+    display: none;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > h1 {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin: 0 auto 14px auto;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > p {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    color: var(--muted);
+    margin: 0 auto 34px auto;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 155px;
+    min-height: 46px;
+    padding: 12px 18px;
+    margin: 8px;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > a:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > a[href="../../logout.php"] {
+    display: flex;
+    width: 155px;
+    margin: 38px auto 0 auto;
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > a[href="../../logout.php"]:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+/* =========================================================
+   OWNER DASHBOARD - CENTERED HORIZONTAL BUTTONS
+   ========================================================= */
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) {
+    min-height: 100vh;
+    padding: 80px 28px 28px 28px;
+    text-align: center;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > br {
+    display: none;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > h1 {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 36px;
+    margin: 0 auto 14px auto;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > p {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    color: var(--muted);
+    margin: 0 auto 34px auto;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 155px;
+    min-height: 46px;
+    padding: 12px 18px;
+    margin: 8px;
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > a:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > a[href="../../logout.php"] {
+    display: flex;
+    width: 155px;
+    margin: 38px auto 0 auto;
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: none;
+}
+
+body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > a[href="../../logout.php"]:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+
+/* =========================================================
+   PC BUILDER PAGE - COMPONENT CHOOSE STYLE
+   Only targets pc_build.php
+   ========================================================= */
+
+body:has(select[name="cpu_id"]) {
+    padding: 28px;
+    background: var(--bg);
+}
+
+/* Main PC Builder title */
+body:has(select[name="cpu_id"]) > h1 {
+    max-width: 1060px;
+    margin: 18px auto 10px auto;
+    font-size: 34px;
+    text-align: left;
+}
+
+/* Description text */
+body:has(select[name="cpu_id"]) > p {
+    max-width: 1060px;
+    margin: 0 auto 22px auto;
+    color: var(--muted);
+}
+
+/* Builder form container */
+body:has(select[name="cpu_id"]) > form {
+    max-width: 1060px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    padding: 0 0 22px 0;
+    overflow: hidden;
+}
+
+/* Section headers: Required / Optional */
+body:has(select[name="cpu_id"]) > form > h2 {
+    margin: 0;
+    padding: 10px 16px;
+    background: #7b8794;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 0;
+}
+
+/* Horizontal separator before optional section */
+body:has(select[name="cpu_id"]) > form > hr {
+    margin: 18px 0 0 0;
+    background: var(--border);
+}
+
+/* Hide old br spacing inside builder form */
+body:has(select[name="cpu_id"]) > form > br {
+    display: none;
+}
+
+/* Component labels become clean row labels */
+body:has(select[name="cpu_id"]) > form > label {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    align-items: center;
+    gap: 16px;
+    min-height: 72px;
+    padding: 14px 16px;
+    margin: 0;
+    border-bottom: 1px solid #e5e7eb;
+    color: var(--dark);
+    font-weight: 800;
+}
+
+
+/* Select fields appear like Choose box on right */
+body:has(select[name="cpu_id"]) > form > select {
+    width: 280px;
+    max-width: calc(100% - 32px);
+    height: 42px;
+    margin: -57px 16px 28px auto;
+    display: block;
+    border: 2px solid var(--primary);
+    border-radius: 6px;
+    background: white;
+    color: var(--dark);
+    font-weight: 700;
+    padding: 8px 12px;
+    box-shadow: none;
+}
+
+/* Required select hover/focus */
+body:has(select[name="cpu_id"]) > form > select:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Required reminder text */
+body:has(select[name="cpu_id"]) > form > p {
+    margin: 20px 16px 0 16px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+/* Build Summary button */
+body:has(select[name="cpu_id"]) > form > button {
+    display: block;
+    margin: 24px auto 0 auto;
+    min-width: 180px;
+    min-height: 44px;
+}
+
+/* Back link */
+body:has(select[name="cpu_id"]) > a[href="../customer/customer_home.php"] {
+    display: block;
+    width: fit-content;
+    margin: 22px auto 0 auto;
+    padding: 10px 16px;
+    border-radius: 7px;
+    background: var(--white);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-weight: 800;
+}
+
+body:has(select[name="cpu_id"]) > a[href="../customer/customer_home.php"]:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* Responsive PC Builder */
+@media screen and (max-width: 768px) {
+    body:has(select[name="cpu_id"]) {
+        padding: 18px;
+    }
+
+    body:has(select[name="cpu_id"]) > h1,
+    body:has(select[name="cpu_id"]) > p,
+    body:has(select[name="cpu_id"]) > form {
+        max-width: 100%;
+    }
+
+    body:has(select[name="cpu_id"]) > form > label {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        min-height: auto;
+        padding: 14px;
+    }
+
+    body:has(select[name="cpu_id"]) > form > select {
+        width: calc(100% - 28px);
+        margin: 0 14px 18px 14px;
+    }
+}
+
+/* =========================================================
+   GLOBAL TEXT
+   ========================================================= */
+
+h1 {
+    color: var(--dark);
+    font-size: 32px;
+    margin: 16px 0 22px 0;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+h2 {
+    color: var(--dark);
+    font-size: 22px;
+    margin-top: 26px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+h3 {
+    color: #374151;
+    font-size: 18px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+strong {
+    color: var(--dark);
+}
+
+/* =========================================================
+   LINKS AND BUTTONS
+   ========================================================= */
 
 a {
+    color: var(--primary);
     text-decoration: none;
-    color: #0056b3;
+    font-weight: 600;
 }
 
-button {
-    padding: 8px 14px;
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+button,
+input[type="submit"] {
+    padding: 10px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 7px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
     cursor: pointer;
-    border: 1px solid #333;
-    background-color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
 }
 
-button:hover {
-    background-color: #dddddd;
+button:hover,
+input[type="submit"]:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
 }
 
-input, select, textarea {
-    padding: 7px;
-    width: 250px;
-    margin-top: 5px;
+a button {
+    margin: 4px 2px;
 }
+
+/* Normal body links */
+body > a {
+    display: inline-block;
+    margin: 6px 0;
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+form {
+    margin-bottom: 14px;
+}
+
+label {
+    color: #374151;
+    font-weight: 700;
+}
+
+input,
+select,
+textarea {
+    width: 270px;
+    max-width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: var(--white);
+    color: var(--dark);
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
 
 table {
-    background-color: white;
     border-collapse: collapse;
-    margin-top: 1px;
+    margin-top: 18px;
+    margin-bottom: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
 th {
-    background-color: #222;
+    background: var(--dark);
     color: white;
+    padding: 13px 14px;
+    border: 1px solid #1f2937;
+    font-weight: 800;
+    text-align: left;
+    white-space: nowrap;
 }
 
-td, th {
-    padding: 10px;
+td {
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    vertical-align: middle;
 }
 
-form {
-    margin-bottom: 10px;
+tr:nth-child(even) td {
+    background: #f9fafb;
+}
+
+tr:hover td {
+    background: var(--primary-soft);
+}
+
+/* Table form cleanup */
+td form {
+    margin: 0;
+}
+
+td input,
+td select {
+    width: 220px;
+}
+
+td button {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+/* =========================================================
+   IMAGES
+   ========================================================= */
+
+img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: white;
+    padding: 8px;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+hr {
+    border: none;
+    height: 1px;
+    background: #cfd8e3;
+    margin: 24px 0;
+}
+
+/* Keep page content readable */
+body > h1,
+body > h2,
+body > h3,
+body > p,
+body > form,
+body > table,
+body > a,
+body > img,
+body > hr {
+    max-width: 1280px;
+}
+
+/* =========================================================
+   PRINT PAGES
+   ========================================================= */
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        color: black;
+        display: block;
+    }
+
+    body::before {
+        display: none;
+    }
+
+    button,
+    a {
+        display: none;
+    }
+
+    table {
+        box-shadow: none;
+    }
+
+    img {
+        box-shadow: none;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 18px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+    }
+
+    td input,
+    td select {
+        width: 180px;
+    }
+
+    body:has(a[href="index.php?role=customer"]) {
+        padding-top: 45px;
+    }
+
+    body:has(a[href="index.php?role=customer"]) > form {
+        padding: 22px;
+    }
+
+    body:has(a[href="index.php?role=customer"]) > form > div {
+        width: 100%;
+    }
+
+    body:has(a[href="index.php?role=customer"]) > form input {
+        width: 100%;
+    }
+
+    body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]),
+    body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]),
+    body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) {
+        padding: 55px 18px 18px 18px;
+    }
+
+    body:has(a[href="customer_home.php"]):has(a[href="../cart/view_cart.php"]) > a,
+    body:has(a[href="../product/manage_products.php"]):has(a[href="../checkout_order/manage_orders.php"]) > a,
+    body:has(a[href="manage_staff_ids.php"]):has(a[href="../product/manage_products.php"]) > a {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+
+/* =========================================================
+   CUSTOMER HOME PAGE - CLEAN FEATURED CATEGORY LAYOUT
+   Works with updated customer_home.php class names
+   ========================================================= */
+
+.customer-home-page {
+    padding: 70px 40px 40px 40px;
+    text-align: center;
+}
+
+.customer-home-page > h1 {
+    text-align: center;
+    font-size: 34px;
+    margin: 0 auto 12px auto;
+}
+
+.customer-home-page > p {
+    text-align: center;
+    color: var(--muted);
+    margin: 0 auto 30px auto;
+}
+
+/* Search section */
+.customer-search-section {
+    max-width: 760px;
+    margin: 0 auto 30px auto;
+}
+
+.customer-search-section h2 {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.customer-search-section form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.customer-search-section input {
+    width: 340px;
+    margin-top: 0;
+}
+
+.customer-search-section button {
+    min-width: 95px;
+}
+
+/* Home shortcut */
+.customer-shortcut-section {
+    max-width: 760px;
+    margin: 0 auto 38px auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.customer-shortcut-section h2 {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.shortcut-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+    min-height: 46px;
+    padding: 12px 18px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.20);
+}
+
+.shortcut-button:hover {
+    background: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+}
+
+/* Featured category */
+.featured-category-section {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
+}
+
+.featured-category-section h2 {
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.featured-category-section > p {
+    text-align: center;
+    margin: 0 0 28px 0;
+    color: var(--text);
+}
+
+/* Category cards */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 18px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.category-card {
+    min-height: 96px;
+    padding: 18px 12px;
+    background: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.category-card:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border-color: #bfdbfe;
+    text-decoration: none;
+}
+
+/* Back link */
+.customer-home-page .back-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 34px auto 0 auto;
+    padding: 11px 18px;
+    background: var(--white);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.customer-home-page .back-link:hover {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .customer-home-page {
+        padding: 45px 18px 24px 18px;
+    }
+
+    .customer-search-section form {
+        flex-direction: column;
+    }
+
+    .customer-search-section input {
+        width: 100%;
+    }
+
+    .customer-search-section button {
+        width: 160px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .category-card {
+        min-height: 85px;
+    }
+}
+
+
+/* =========================================================
+   CENTER LAST 3 CATEGORY CARDS
+   WiFi Adapter/LAN Card, Anti Virus, UPS
+   ========================================================= */
+
+@media screen and (min-width: 769px) {
+    .category-grid {
+        grid-template-columns: repeat(7, 145px);
+        justify-content: center;
+    }
+
+    .category-card:nth-child(15) {
+        grid-column: 3;
+    }
+
+    .category-card:nth-child(16) {
+        grid-column: 4;
+    }
+
+    .category-card:nth-child(17) {
+        grid-column: 5;
+    }
 }

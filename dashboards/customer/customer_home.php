@@ -7,7 +7,28 @@ if (!isset($_SESSION["User_ID"]) || $_SESSION["Role"] != "Customer") {
     exit();
 }
 
-$categorySql = "SELECT * FROM category ORDER BY Category_Name ASC";
+/* Get all categories in required display sequence */
+$categorySql = "SELECT * FROM category
+                ORDER BY FIELD(Category_Name,
+                    'CPU',
+                    'CPU Cooler',
+                    'Motherboard',
+                    'RAM',
+                    'Storage',
+                    'Graphics Card',
+                    'Power Supply',
+                    'Casing',
+                    'Monitor',
+                    'Casing Fan',
+                    'Keyboard',
+                    'Mouse',
+                    'Speaker & Home Theater',
+                    'Headphone',
+                    'WiFi Adapter/LAN Card',
+                    'Anti Virus',
+                    'UPS'
+                )";
+
 $categoryResult = mysqli_query($conn, $categorySql);
 ?>
 
@@ -17,45 +38,45 @@ $categoryResult = mysqli_query($conn, $categorySql);
     <title>Customer Home</title>
     <link rel="stylesheet" href="../../webstyle/style.css">
 </head>
-<body>
+<body class="customer-home-page">
 
     <h1>Customer Home Page</h1>
 
     <p>Welcome, <?php echo $_SESSION["Name"]; ?></p>
 
-    <h2>Search Products</h2>
+    <section class="customer-search-section">
+        <h2>Search Products</h2>
 
-    <form method="GET" action="../product/products.php">
-        <input type="text" name="search" placeholder="Search by name, brand, or model" required>
-        <button type="submit">Search</button>
-    </form>
+        <form method="GET" action="../product/products.php">
+            <input type="text" name="search" placeholder="Search by name, brand, or model">
+            <button type="submit">Search</button>
+        </form>
+    </section>
 
-    <hr>
+    <section class="customer-shortcut-section">
+        <h2>Home Shortcuts</h2>
 
-    <h2>Home Shortcuts</h2>
-    
-    <a href="../pc_builder/pc_build.php">
-        <button>PC Build</button>
-    </a>
+        <a class="shortcut-button" href="../pc_builder/pc_build.php">PC Build</a>
+    </section>
 
-    <hr>
+    <section class="featured-category-section">
+        <h2>Featured Category</h2>
+        <p>Get Your Desired Product from Featured Category!</p>
 
-    <h2>Component Categories</h2>
+        <div class="category-grid">
+            <?php
+            while ($category = mysqli_fetch_assoc($categoryResult)) {
+            ?>
+                <a class="category-card" href="../product/products.php?category=<?php echo urlencode($category["Category_Name"]); ?>">
+                    <?php echo $category["Category_Name"]; ?>
+                </a>
+            <?php
+            }
+            ?>
+        </div>
+    </section>
 
-    <?php
-    while ($category = mysqli_fetch_assoc($categoryResult)) {
-    ?>
-        <a href="../product/products.php?category=<?php echo urlencode($category['Category_Name']); ?>">
-            <button><?php echo $category["Category_Name"]; ?></button>
-        </a>
-        <br><br>
-    <?php
-    }
-    ?>
-
-    <br>
-
-    <a href="customer_dashboard.php">Back to Dashboard</a>
+    <a class="back-link" href="../customer/customer_dashboard.php">Back to Dashboard</a>
 
 </body>
 </html>

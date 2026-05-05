@@ -101,7 +101,7 @@ $reviewResult = mysqli_query($conn, $reviewSql);
                         <input type="hidden" name="review_id" value="<?php echo $review["ReviewID"]; ?>">
 
                         <button type="submit" name="approve_review">Approve</button>
-                        <button type="submit" name="disapprove_review">Rejecte</button>
+                        <button type="submit" name="disapprove_review">Reject</button>
                     </form>
                 </td>
             </tr>

@@ -293,17 +293,26 @@ if (isset($_POST["login"])) {
     } elseif (isset($_GET["role"]) && $_GET["role"] == "login") {
     ?>
 
-        <h2>Login</h2>
 
-        <form method="POST" action="">
-            <label>Phone:</label><br>
-            <input type="text" name="phone" required><br><br>
+<form method="POST" action="">
+    <div>
+        <label for="login_phone">Phone:</label>
+        <input type="text" id="login_phone" name="phone" required>
+    </div>
 
-            <label>Password:</label><br>
-            <input type="password" name="password" required><br><br>
+    
 
-            <button type="submit" name="login">Login</button>
-        </form>
+    <div>
+        <label for="login_password">Password:</label>
+        <input type="password" id="login_password" name="password" required>
+    </div>
+
+    
+
+    <div style="text-align: center; width: 270px;">
+        <button type="submit" name="login">Login</button>
+    </div>
+</form>
 
     <?php
     } else {
