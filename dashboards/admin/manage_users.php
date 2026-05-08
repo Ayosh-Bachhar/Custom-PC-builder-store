@@ -90,6 +90,7 @@ $userResult = mysqli_query($conn, $userSql);
         <?php
         while ($user = mysqli_fetch_assoc($userResult)) {
         ?>
+        
             <tr>
                 <td><?php echo $user["User_ID"]; ?></td>
                 <td><?php echo $user["Name"]; ?></td>
